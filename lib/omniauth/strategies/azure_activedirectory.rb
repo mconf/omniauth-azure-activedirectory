@@ -284,7 +284,7 @@ module OmniAuth
             end
             # The key also contains other fields, such as n and e, that are
             # redundant. x5c is sufficient to verify the id token.
-            OpenSSL::X509::Certificate.new(JWT.Base64.url_decode(x5c.first)).public_key
+            OpenSSL::X509::Certificate.new(JWT::Base64.url_decode(x5c.first)).public_key
           end
         return jwt_claims, jwt_header if jwt_claims['nonce'] == read_nonce
         fail JWT::DecodeError, 'Returned nonce did not match.'
